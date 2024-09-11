@@ -17,3 +17,42 @@ for (let i = 0; i < 100; i++) {
     console.log("Buzz");
   } else console.log(i);
 }
+
+// Part 2: Prime Time
+
+// Now we will move onto something slightly more complex.
+// Context: A prime number is any whole number greater than 1 that cannot be exactly divided by any whole number other than itself and 1. For example, the number 5 is prime because it cannot be divided by 4, 3, or 2; it can only be divided by itself (5) and 1. Similarly, the numbers 7 and 11 are prime. As numbers become larger, determining whether or not they are prime is increasingly difficult, but loops make this process relatively easy!
+// Write a script that accomplishes the following:
+// Declare an arbitrary number, n.
+// Create a loop that searches for the next prime number, starting at n and incrementing from there.
+// As soon as you find the prime number, log that number and exit the loop.
+// Continuing with the example above, if n is equal to 4, your loop should log 5. Similarly, if n is 5, it should log 7, and if n is 9, it should log 11. Test your loop with higher numbers and reference an online prime number table to determine the accuracy of your code.
+// Be careful! If you set n to a number too large, your loop could take a long time to process.
+
+// 2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
+// 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+// 73, 79, 83, 89, 97, 101, 103, 107, 109, 113,
+// 127, 131, 137, 139, 149, 151, 157, 163, 167, 173,
+// 179, 181, 191, 193, 197, 199, 211, 223, 227, 229,
+// 233, 239, 241, 251, 257, 263, 269, 271, 277, 281,
+// 283, 293, 307, 311, 313, 317, 331, 337, 347, 349,
+// 353, 359, 367, 373, 379, 383, 389, 397, 401, 409,
+// 419, 421, 431, 433, 439, 443, 449, 457, 461, 463,
+// 467, 479, 487, 491, 499, 503, 509, 521, 523, 541...
+
+let n = 424;
+let flag = false;
+
+for (let x = n; x < n * 2; x++) {
+  if (!flag) {
+    for (let i = 2; i <= n * 2; i++) {
+      if (x % i === 0 && x !== i) {
+        break;
+      } else if (x === i) {
+        console.log(x + " is prime");
+        flag = true;
+        break;
+      }
+    }
+  }
+}
