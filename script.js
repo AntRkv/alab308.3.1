@@ -9,14 +9,14 @@
 // If a number is not divisible by either 3 or 5, log the number.
 // Remember to commit your solution once it is working.
 
-for (let i = 0; i < 100; i++) {
-  if (i % 3 === 0) {
-    console.log("Fizz");
-    if (i % 5 === 0) console.log("Fizz Buzz");
-  } else if (i % 5 === 0) {
-    console.log("Buzz");
-  } else console.log(i);
-}
+// for (let i = 0; i < 100; i++) {
+//   if (i % 3 === 0) {
+//     console.log("Fizz");
+//     if (i % 5 === 0) console.log("Fizz Buzz");
+//   } else if (i % 5 === 0) {
+//     console.log("Buzz");
+//   } else console.log(i);
+// }
 
 // Part 2: Prime Time
 
@@ -40,22 +40,22 @@ for (let i = 0; i < 100; i++) {
 // 419, 421, 431, 433, 439, 443, 449, 457, 461, 463,
 // 467, 479, 487, 491, 499, 503, 509, 521, 523, 541...
 
-let n = 492;
-let flag = false;
+// let n = 492;
+// let flag = false;
 
-for (let x = n; x < n * 2; x++) {
-  if (!flag) {
-    for (let i = 2; i <= n * 2; i++) {
-      if (x % i === 0 && x !== i) {
-        break;
-      } else if (x === i) {
-        console.log(x + " is prime");
-        flag = true;
-        break;
-      }
-    }
-  }
-}
+// for (let x = n; x < n * 2; x++) {
+//   if (!flag) {
+//     for (let i = 2; i <= n * 2; i++) {
+//       if (x % i === 0 && x !== i) {
+//         break;
+//       } else if (x === i) {
+//         console.log(x + " is prime");
+//         flag = true;
+//         break;
+//       }
+//     }
+//   }
+// }
 
 // Part 3: Feeling Loopy
 
@@ -91,16 +91,42 @@ for (let x = n; x < n * 2; x++) {
 
 // Index,Mass (kg),Spring 1 (m),Spring 2 (m)\n1,0.00,0.050,0.050\n2,0.49,0.066,0.066\n3,0.98,0.087,0.080\n4,1.47,0.116,0.108\n5,1.96,0.142,0.138\n6,2.45,0.166,0.158\n7,2.94,0.193,0.174\n8,3.43,0.204,0.192\n9,3.92,0.226,0.205\n10,4.41,0.238,0.232
 
-let str = 'ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26';
-  // "Index,Mass (kg),Spring 1 (m),Spring 2 (m)\n1,0.00,0.050,0.050\n2,0.49,0.066,0.066\n3,0.98,0.087,0.080\n4,1.47,0.116,0.108\n5,1.96,0.142,0.138\n6,2.45,0.166,0.158\n7,2.94,0.193,0.174\n8,3.43,0.204,0.192\n9,3.92,0.226,0.205\n10,4.41,0.238,0.232";
+//
+let str =
+  // "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26";
+"Index,Mass (kg),Spring 1 (m),Spring 2 (m)\n1,0.00,0.050,0.050\n2,0.49,0.066,0.066\n3,0.98,0.087,0.080\n4,1.47,0.116,0.108\n5,1.96,0.142,0.138\n6,2.45,0.166,0.158\n7,2.94,0.193,0.174\n8,3.43,0.204,0.192\n9,3.92,0.226,0.205\n10,4.41,0.238,0.232";
 
-let strN = "";
+// Задача:
+// Вам нужно написать скрипт, который будет обрабатывать строку CSV и выводить данные по строкам в консоль.
+
+// Основные шаги:
+// Пройти по всем символам строки: Использовать цикл для обработки каждого символа строки.
+// Хранить данные ячейки: Сохранять данные текущей ячейки в переменной.
+// Переходить к следующей ячейке при встрече запятой: Если встречается запятая, текущая ячейка считается завершённой, и нужно перейти к следующей.
+// Переходить к следующей строке при встрече \n: Когда встречается символ новой строки \n, текущая строка считается завершённой, и начинается новая строка.
+// Выводить данные строки: Выводить каждую строку данных в консоль, разделяя значения по ячейкам.
+// Предположения:
+// В каждой строке будет ровно 4 ячейки данных.
+// В строке нет других специальных символов, кроме \n.
+
+let row = "";
+let cell = "";
+
 for (let i = 0; i < str.length; i++) {
-  if (str[i] !== ",") {
-    strN += str[i];
-  } else if  (str[i] === ',' || str[i] === '.') {
-    strN += ' '; 
+  if (str[i] !== "," && str[i] !== "\n" && i !== str.length - 1) {
+    cell += str[i];
+  } else if (str[i] === ",") {
+    row = row + cell + " ";
+    cell = "";
+  } else if (str[i] === "\n") {
+    row = row + cell;
+    console.log(row);
+    row = "";
+    cell = "";
+  } else if (i == str.length - 1) {
+    row = row + cell + str[str.length - 1];
+    console.log(row);
+    row = "";
+    cell = "";
   }
 }
-
-console.log(strN);
